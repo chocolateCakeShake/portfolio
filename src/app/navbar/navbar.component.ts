@@ -16,4 +16,10 @@ import {
 })
 export class NavbarComponent {
   isDarkMode = signal(false);
+
+  modes = [
+    { icon: 'bi bi-moon-stars', text: 'Dark' },
+    { icon: 'bi bi-brightness-high', text: 'Light' },
+    { icon: 'bi bi-circle-half', text: 'Auto' },
+  ];
 }
