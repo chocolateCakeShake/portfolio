@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,15 +20,30 @@ import { HomepageComponent } from './homepage/homepage.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  isDarkTheme = signal<boolean>(false);
 
-  constructor() {}
-
-  ngOnInit() {
-    this.isDarkTheme.set(true);
+  ngOnInit(): void {
+    this.setDefaultMode();
   }
 
-  toggleTheme() {
-    this.isDarkTheme.set(!this.isDarkTheme);
+  setDefaultMode() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.setAttribute('data-bs-theme', 'dark');
+    } else {
+      document.body.setAttribute('data-bs-theme', 'light');
+    }
+  }
+
+  setMode(mode: string) {
+    switch (mode.toLowerCase()) {
+      case 'dark':
+        document.body.setAttribute('data-bs-theme', 'dark');
+        break;
+      case 'light':
+        document.body.setAttribute('data-bs-theme', 'light');
+        break;
+      default:
+        this.setDefaultMode();
+        break;
+    }
   }
 }
