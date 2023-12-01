@@ -20,13 +20,12 @@ import { HomepageComponent } from './homepage/homepage.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-
   ngOnInit(): void {
     this.setDefaultMode();
   }
 
   setDefaultMode() {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (window && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.setAttribute('data-bs-theme', 'dark');
     } else {
       document.body.setAttribute('data-bs-theme', 'light');
