@@ -5,4 +5,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'projects', component: ProjectsComponent },
+  // { path: 'resume', component: ResumeComponent },
+  { path: '**', redirectTo: '' },
 ];
