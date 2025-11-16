@@ -63,5 +63,9 @@
   "description": "Protfolio for ChocolateCakeShake",
   "main": "main.ts",
   "author": "chocolateCakeShake <abdullah6566@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "22.x",
+    "npm": ">=10.0.0"
+  }
 }
