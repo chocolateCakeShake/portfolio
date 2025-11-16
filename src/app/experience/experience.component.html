@@ -1,0 +1,292 @@
+<div class="experience-page">
+  <!-- Hero Section -->
+  <section class="experience-hero">
+    <div class="container">
+      <h1 class="display-3 fw-bold gradient-text mb-3">My Journey</h1>
+      <p class="lead mb-5">From content writer to Lead Frontend Engineer - A story of growth, learning, and innovation</p>
+
+      <!-- Stats Cards -->
+      <div class="stats-section row g-4 mb-5">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <i class="bi bi-calendar-check stat-icon"></i>
+            <h3 class="stat-number">{{ getTotalYearsOfExperience() }}+</h3>
+            <p class="stat-label">Years Experience</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <i class="bi bi-folder-check stat-icon"></i>
+            <h3 class="stat-number">{{ getProjectsCompleted() }}+</h3>
+            <p class="stat-label">Projects Completed</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <i class="bi bi-building stat-icon"></i>
+            <h3 class="stat-number">{{ getCompaniesWorkedAt() }}</h3>
+            <p class="stat-label">Companies</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <i class="bi bi-cpu stat-icon"></i>
+            <h3 class="stat-number">{{ getTechnologiesMastered() }}+</h3>
+            <p class="stat-label">Technologies</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Gantt Chart -->
+  <section class="gantt-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">
+        <i class="bi bi-diagram-3 me-2"></i>
+        Career Timeline - Interactive Gantt Chart
+      </h2>
+
+      <div class="gantt-container">
+        <!-- Year Labels -->
+        <div class="gantt-years">
+          <div class="year-label">2020</div>
+          <div class="year-label">2021</div>
+          <div class="year-label">2022</div>
+          <div class="year-label">2023</div>
+          <div class="year-label">2024</div>
+          <div class="year-label">2025</div>
+        </div>
+
+        <!-- Gantt Bars -->
+        <div class="gantt-rows">
+          @for (exp of experiences; track exp.company) {
+            <div class="gantt-row" (click)="selectExperience(exp)">
+              <div class="gantt-label">
+                <div class="company-info">
+                  <i [class]="'bi ' + exp.icon + ' me-2'"></i>
+                  <div>
+                    <div class="company-name">{{ exp.company }}</div>
+                    <div class="role-name">{{ exp.role }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="gantt-timeline">
+                <div
+                  class="gantt-bar"
+                  [class.selected]="selectedExperience === exp"
+                  [style.left]="getPositionLeft(exp.start)"
+                  [style.width]="getWidth(exp.start, exp.end)"
+                  [style.background]="exp.color">
+                  <span class="duration-label">{{ exp.duration }}</span>
+                  @if (exp.end === 'Present') {
+                    <span class="pulse-dot"></span>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Selected Experience Details -->
+        @if (selectedExperience) {
+          <div class="experience-details">
+            <button class="btn-close-details" (click)="selectExperience(selectedExperience)">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <h4>
+              <i [class]="'bi ' + selectedExperience.icon + ' me-2'"></i>
+              {{ selectedExperience.company }}
+            </h4>
+            <p class="role-badge">{{ selectedExperience.role }}</p>
+            <h5 class="mt-3">Key Achievements:</h5>
+            <ul class="highlights-list">
+              @for (highlight of selectedExperience.highlights; track highlight) {
+                <li>
+                  <i class="bi bi-check-circle-fill me-2"></i>
+                  {{ highlight }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ECharts Visualizations -->
+  <section class="charts-section py-5 bg-pattern">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">
+        <i class="bi bi-graph-up me-2"></i>
+        Data-Driven Career Insights
+      </h2>
+
+      <div class="row g-4 mb-4">
+        <!-- Skills Radar Chart -->
+        <div class="col-lg-6">
+          <div class="chart-card">
+            <div #skillsChart class="echarts-container"></div>
+          </div>
+        </div>
+
+        <!-- Career Growth Pie Chart -->
+        <div class="col-lg-6">
+          <div class="chart-card">
+            <div #careerProgressChart class="echarts-container"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Tech Evolution Line Chart -->
+        <div class="col-lg-6">
+          <div class="chart-card">
+            <div #techEvolutionChart class="echarts-container"></div>
+          </div>
+        </div>
+
+        <!-- Project Timeline Scatter -->
+        <div class="col-lg-6">
+          <div class="chart-card">
+            <div #projectTimelineChart class="echarts-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Story -->
+  <section class="story-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">
+        <i class="bi bi-book me-2"></i>
+        The Story Behind The Code
+      </h2>
+
+      <div class="timeline-story">
+        <div class="story-item">
+          <div class="story-icon">🎓</div>
+          <div class="story-content">
+            <h4>2015-2021: The Foundation</h4>
+            <p>Started my journey at FAST-NUCES, one of Pakistan's premier tech universities. While studying Computer Science, I dove into web development, discovering my passion for creating beautiful, functional user interfaces.</p>
+          </div>
+        </div>
+
+        <div class="story-item">
+          <div class="story-icon">✍️</div>
+          <div class="story-content">
+            <h4>2020: First Professional Steps</h4>
+            <p>Joined CarSpiritPK as System Admin & Content Writer. Optimized web vitals, improved performance by 40%, and learned the importance of user experience. This taught me that great code isn't just about functionality—it's about speed and accessibility.</p>
+          </div>
+        </div>
+
+        <div class="story-item">
+          <div class="story-icon">👨‍💻</div>
+          <div class="story-content">
+            <h4>2021: Junior Developer Era</h4>
+            <p>Stepped into professional development at Hardstone Enterprises. Created interactive dashboards, mastered Redux, reduced API calls by 70%. This was where I transformed from a hobbyist to a professional engineer.</p>
+          </div>
+        </div>
+
+        <div class="story-item">
+          <div class="story-icon">🚀</div>
+          <div class="story-content">
+            <h4>2022-2024: The Web3 Revolution</h4>
+            <p>At Avento Labs, I led cutting-edge Web3 projects. Built NFT marketplaces, crypto wallets, and integrated with Ethereum and Tron blockchains. Led a team, mentored juniors, and pushed the boundaries of what's possible with modern frontend frameworks.</p>
+          </div>
+        </div>
+
+        <div class="story-item">
+          <div class="story-icon">🎯</div>
+          <div class="story-content">
+            <h4>2024-Present: Leadership & Innovation</h4>
+            <p>Currently leading frontend at SOCO Engineers. Reduced critical app load time from 30s to 3s. Ported legacy systems to modern stacks in record time. Built hiring pipelines and engineering standards. Now I don't just write code—I shape how teams write code.</p>
+          </div>
+        </div>
+
+        <div class="story-item">
+          <div class="story-icon">🌟</div>
+          <div class="story-content">
+            <h4>What's Next?</h4>
+            <p>The journey continues. I'm focused on architectural excellence, performance optimization, and building teams that ship quality code. Every project is an opportunity to learn, every challenge is a chance to innovate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Breakdown -->
+  <section class="skills-breakdown py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">
+        <i class="bi bi-tools me-2"></i>
+        Technology Arsenal
+      </h2>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="skill-category">
+            <h4><i class="bi bi-laptop me-2"></i>Frontend Frameworks</h4>
+            <div class="skill-tags">
+              @for (skill of skills.frontend; track skill) {
+                <span class="skill-tag">{{ skill }}</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="skill-category">
+            <h4><i class="bi bi-palette me-2"></i>Styling & Design</h4>
+            <div class="skill-tags">
+              @for (skill of skills.styling; track skill) {
+                <span class="skill-tag">{{ skill }}</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="skill-category">
+            <h4><i class="bi bi-server me-2"></i>Backend & Data</h4>
+            <div class="skill-tags">
+              @for (skill of skills.backend; track skill) {
+                <span class="skill-tag">{{ skill }}</span>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="skill-category">
+            <h4><i class="bi bi-gear me-2"></i>Tools & More</h4>
+            <div class="skill-tags">
+              @for (skill of skills.tools; track skill) {
+                <span class="skill-tag">{{ skill }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section py-5 text-center">
+    <div class="container">
+      <h2 class="display-5 mb-4">Want to work together?</h2>
+      <p class="lead mb-4">Let's build something amazing!</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <a href="https://wa.me/923015219996" class="btn btn-lg btn-primary">
+          <i class="bi bi-whatsapp me-2"></i>
+          Chat on WhatsApp
+        </a>
+        <a routerLink="/" class="btn btn-lg btn-outline-primary">
+          <i class="bi bi-house me-2"></i>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
