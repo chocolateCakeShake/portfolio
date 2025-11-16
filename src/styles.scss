@@ -15,4 +15,235 @@ $theme-colors: (
 @import 'bootstrap/scss/bootstrap';
 @import "bootstrap-icons/font/bootstrap-icons";
 
+// ShepherdJS Tour Styles
+@import 'shepherd.js/dist/css/shepherd.css';
+
+// Custom Shepherd Theme
+.shepherd-theme-custom {
+  .shepherd-element {
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    border: 2px solid $primary;
+
+    .shepherd-arrow {
+      &::before {
+        background: var(--bs-body-bg);
+        border: 2px solid $primary;
+      }
+    }
+
+    .shepherd-header {
+      background: linear-gradient(135deg, $primary, $secondary);
+      padding: 1rem;
+      border-radius: 12px 12px 0 0;
+
+      .shepherd-title {
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .shepherd-cancel-icon {
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .shepherd-text {
+      padding: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+
+      h3 {
+        color: $primary;
+        margin-bottom: 0.75rem;
+        font-size: 1.3rem;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .shepherd-footer {
+      padding: 1rem 1.5rem;
+      background: var(--bs-secondary-bg);
+      border-radius: 0 0 12px 12px;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+
+      .shepherd-button {
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:not(.shepherd-button-secondary) {
+          background: $primary;
+          color: white;
+
+          &:hover {
+            background: darken($primary, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba($primary, 0.4);
+          }
+        }
+
+        &.shepherd-button-secondary {
+          background: transparent;
+          color: var(--bs-body-color);
+          border: 1px solid var(--bs-border-color);
+
+          &:hover {
+            background: var(--bs-tertiary-bg);
+          }
+        }
+      }
+    }
+  }
+
+  .shepherd-modal-overlay-container {
+    .shepherd-modal-overlay {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+// Cool Global CSS Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+// Utility classes for animations
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// Global smooth transitions
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+// Enhanced scrollbar styling
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bs-secondary-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, $primary, $secondary);
+  border-radius: 10px;
+  border: 2px solid var(--bs-secondary-bg);
+
+  &:hover {
+    background: linear-gradient(135deg, darken($primary, 10%), darken($secondary, 10%));
+  }
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Link hover effects
+a {
+  transition: all 0.3s ease;
+
+  &:not(.btn) {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $primary;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
 

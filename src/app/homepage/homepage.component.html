@@ -1,23 +1,50 @@
-<main class="px-3">
-  <h1>
-    Hello, I'm
-    <span placement="end"
-    ngbPopover="@chocolateCakeShake"
-    class="text-primary">Abdullah!</span> 🍫🍰🤝🏼
-  </h1>
-  <p class="lead">
-    Turning <span class='h3 mx-1'>☕</span>  into code, one component at a time. <span class='h3 mx-1'>👨🏻‍💻</span>
-  </p>
+<main class="px-3 hero-section">
+  <div class="hero-content">
+    <h1 class="hero-heading display-1 fw-bold mb-4">
+      Hello, I'm
+      <span
+        placement="end"
+        ngbPopover="@chocolateCakeShake"
+        class="text-primary pulse-text"
+        style="cursor: pointer;">
+        Abdullah!
+      </span>
+      <span class="emoji-wave">🍫🍰🤝🏼</span>
+    </h1>
 
-  <div class='d-flex gap-3 justify-content-center flex-column flex-sm-row'>
-    <a href='https://docs.google.com/document/d/1z8d4GbV9itUgHkB1OkqAf0Uit8TBk5jVXVQQYUpZfEg/edit?usp=sharing'
-      target='_blank'
-    class="btn btn-lg btn-primary">
-      See Resume
-    </a>
-    <a class='btn btn-lg btn-outline-primary'
-      aria-label="Chat on WhatsApp" href="https://wa.me/923015219996">
-      Chat on WhatsApp
-    </a>
+    <p class="lead hero-subtitle mb-4">
+      Turning <span class='h3 mx-1 floating-emoji'>☕</span> into code, one component at a time.
+      <span class='h3 mx-1'>👨🏻‍💻</span>
+    </p>
+
+    <div class="tech-display mb-5">
+      <p class="lead">
+        I build beautiful experiences with
+        <span class="tech-switcher text-primary fw-bold h3">&lt;Angular/&gt;</span>
+      </p>
+    </div>
+
+    <div class='hero-buttons d-flex gap-3 justify-content-center flex-column flex-sm-row'>
+      <a
+        href='https://docs.google.com/document/d/1z8d4GbV9itUgHkB1OkqAf0Uit8TBk5jVXVQQYUpZfEg/edit?usp=sharing'
+        target='_blank'
+        class="btn btn-lg btn-primary btn-animated">
+        <i class="bi bi-file-earmark-text me-2"></i>
+        See Resume
+      </a>
+      <a
+        class='btn btn-lg btn-outline-primary btn-animated'
+        aria-label="Chat on WhatsApp"
+        href="https://wa.me/923015219996">
+        <i class="bi bi-whatsapp me-2"></i>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="animated-bg">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
   </div>
 </main>

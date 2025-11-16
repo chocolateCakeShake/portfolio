@@ -1,0 +1,108 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-coverflow';
+
+.gradient-text {
+  background: linear-gradient(135deg, #b52e31 0%, #6b3e26 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.projects-swiper {
+  width: 100%;
+  padding: 50px 20px;
+
+  swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.project-card {
+  .card {
+    transition: all 0.3s ease;
+    background: var(--bs-body-bg);
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(181, 46, 49, 0.2) !important;
+    }
+  }
+
+  .card-title {
+    color: var(--bs-primary);
+    font-size: 1.5rem;
+  }
+
+  .timeline-badge {
+    padding: 8px 16px;
+    background: var(--bs-secondary-bg);
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  .btn {
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(181, 46, 49, 0.3);
+    }
+  }
+}
+
+// Custom Swiper navigation styles
+::ng-deep {
+  .projects-swiper {
+    --swiper-navigation-color: var(--bs-primary);
+    --swiper-pagination-color: var(--bs-primary);
+    --swiper-navigation-size: 44px;
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      background: var(--bs-body-bg);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(181, 46, 49, 0.3);
+      }
+
+      &::after {
+        font-size: 20px;
+      }
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+        transform: scale(1.3);
+      }
+    }
+  }
+}
