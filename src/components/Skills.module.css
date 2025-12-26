@@ -1,5 +1,5 @@
 .skills {
-  background: var(--bg-secondary);
+  background: var(--bg-alt);
 }
 
 .filters {
@@ -15,25 +15,25 @@
   font-weight: 500;
   color: var(--text-secondary);
   background: var(--bg-card);
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: border-color 0.2s, color 0.2s;
 }
 
 .filterBtn:hover {
-  border-color: var(--chocolate-light);
-  color: var(--text-primary);
+  border-color: var(--accent);
+  color: var(--text);
 }
 
 .filterBtn.active {
-  background: var(--chocolate);
-  border-color: var(--chocolate);
-  color: var(--cream-light);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
 }
 
 .filterBtn:focus-visible {
-  outline: 3px solid var(--color-secondary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -52,23 +52,18 @@
 
 .chartCard {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  transition: all var(--transition-base);
-}
-
-.chartCard:hover {
-  box-shadow: 0 8px 30px var(--shadow-color);
 }
 
 .chartTitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border);
 }
 
 .chartWrapper {
@@ -89,29 +84,29 @@
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-card);
-  border: 2px solid;
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  transition: all var(--transition-base);
+  transition: border-color 0.2s;
 }
 
 .skillPill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--shadow-color);
+  border-color: var(--accent);
 }
 
 .skillName {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .skillLevel {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 600;
+  color: var(--accent);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .filters {
     justify-content: center;

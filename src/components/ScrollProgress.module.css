@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--cherry), var(--caramel), var(--honey));
+  height: 2px;
+  background: var(--accent);
   transform-origin: 0%;
-  z-index: calc(var(--z-sticky) + 1);
+  z-index: 50;
 }

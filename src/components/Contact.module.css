@@ -1,6 +1,5 @@
 .contact {
-  background: var(--bg-secondary);
-  position: relative;
+  background: var(--bg-alt);
 }
 
 .subtitle {
@@ -30,7 +29,7 @@
 .infoTitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text);
   margin-bottom: var(--space-xl);
 }
 
@@ -47,16 +46,14 @@
   gap: var(--space-md);
   padding: var(--space-md);
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   text-decoration: none;
-  transition: all var(--transition-base);
+  transition: border-color 0.2s;
 }
 
 .contactLink:hover {
-  border-color: var(--chocolate-light);
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px var(--shadow-color);
+  border-color: var(--accent);
 }
 
 .iconWrapper {
@@ -65,9 +62,9 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, var(--cherry), var(--caramel));
+  background: var(--accent);
   border-radius: var(--radius-md);
-  color: white;
+  color: var(--bg);
 }
 
 .contactDetails {
@@ -87,7 +84,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  color: var(--text-primary);
+  color: var(--text);
   font-weight: 500;
 }
 
@@ -97,21 +94,12 @@
 
 /* Decorative Element */
 .decorative {
-  position: relative;
   margin-top: var(--space-2xl);
   padding-top: var(--space-xl);
 }
 
 .decorativeCircle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, var(--cherry), var(--caramel));
-  border-radius: 50%;
-  opacity: 0.1;
-  filter: blur(40px);
+  display: none;
 }
 
 .decorativeText {
@@ -119,7 +107,7 @@
   flex-direction: column;
   gap: var(--space-xs);
   padding-left: var(--space-md);
-  border-left: 3px solid var(--cherry);
+  border-left: 2px solid var(--accent);
 }
 
 .decorativeText span {
@@ -130,8 +118,8 @@
 /* Form */
 .form {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-xl);
 }
 
@@ -143,7 +131,7 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--text);
   margin-bottom: var(--space-sm);
 }
 
@@ -153,11 +141,11 @@
   padding: var(--space-md);
   font-family: var(--font-sans);
   font-size: 1rem;
-  color: var(--text-primary);
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-fast);
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s;
 }
 
 .input::placeholder,
@@ -167,14 +155,13 @@
 
 .input:hover,
 .textarea:hover {
-  border-color: var(--chocolate-light);
+  border-color: var(--text-muted);
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: var(--cherry);
-  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+  border-color: var(--accent);
 }
 
 .textarea {
@@ -188,7 +175,7 @@
 }
 
 .submitBtn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -211,18 +198,19 @@
 .successMessage {
   margin-top: var(--space-lg);
   padding: var(--space-md);
-  background: rgba(196, 30, 58, 0.1);
-  color: var(--cherry);
+  background: var(--bg-alt);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   text-align: center;
   font-weight: 500;
 }
 
-/* Focus visible styles for accessibility */
+/* Focus visible styles */
 .contactLink:focus-visible,
 .input:focus-visible,
 .textarea:focus-visible,
 .submitBtn:focus-visible {
-  outline: 3px solid var(--color-secondary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }

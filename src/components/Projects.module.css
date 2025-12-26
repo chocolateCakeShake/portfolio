@@ -33,13 +33,13 @@
 /* Project Card */
 .projectCard {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-xl);
   height: 100%;
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-base);
+  transition: border-color 0.2s;
 }
 
 .projectCard::before {
@@ -48,14 +48,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: var(--accent-color);
-  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  height: 3px;
+  background: var(--accent);
 }
 
 .projectCard:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 15px 50px var(--shadow-color);
+  border-color: var(--accent);
 }
 
 .projectIcon {
@@ -66,7 +64,7 @@
 .projectTitle {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--text);
   margin-bottom: var(--space-md);
 }
 
@@ -87,7 +85,7 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   padding: var(--space-xs) var(--space-sm);
-  background: var(--bg-secondary);
+  background: var(--bg-alt);
   color: var(--text-muted);
   border-radius: var(--radius-md);
 }
@@ -95,19 +93,20 @@
 /* Swiper Navigation & Pagination */
 .swiper :global(.swiper-button-prev),
 .swiper :global(.swiper-button-next) {
-  color: var(--chocolate);
+  color: var(--text);
   background: var(--bg-card);
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  box-shadow: 0 4px 12px var(--shadow-color);
-  transition: all var(--transition-base);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .swiper :global(.swiper-button-prev):hover,
 .swiper :global(.swiper-button-next):hover {
-  background: var(--chocolate);
-  color: var(--cream-light);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
 }
 
 .swiper :global(.swiper-button-prev)::after,
@@ -117,22 +116,21 @@
 }
 
 .swiper :global(.swiper-pagination-bullet) {
-  background: var(--chocolate-light);
-  opacity: 0.5;
-  transition: all var(--transition-base);
+  background: var(--text-muted);
+  opacity: 0.3;
+  transition: opacity 0.2s, background 0.2s;
 }
 
 .swiper :global(.swiper-pagination-bullet-active) {
-  background: var(--cherry);
+  background: var(--accent);
   opacity: 1;
-  transform: scale(1.2);
 }
 
 /* Testimonials Section */
 .testimonialsSection {
   margin-top: var(--space-4xl);
   padding-top: var(--space-2xl);
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border);
 }
 
 .testimonialsTitle {
@@ -141,12 +139,12 @@
   gap: var(--space-sm);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--text);
   margin-bottom: var(--space-xl);
 }
 
 .testimonialsTitle svg {
-  color: var(--caramel);
+  color: var(--accent);
 }
 
 .testimonialSwiper {
@@ -155,18 +153,17 @@
 
 .testimonialCard {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-xl);
   height: 100%;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-base);
+  transition: border-color 0.2s;
 }
 
 .testimonialCard:hover {
-  border-color: var(--chocolate-light);
-  box-shadow: 0 8px 30px var(--shadow-color);
+  border-color: var(--accent);
 }
 
 .quote {
@@ -180,11 +177,11 @@
 
 .quote::before {
   content: '"';
-  font-size: 3rem;
-  color: var(--cherry);
-  opacity: 0.3;
+  font-size: 2.5rem;
+  color: var(--accent);
+  opacity: 0.4;
   display: block;
-  margin-bottom: calc(var(--space-md) * -1);
+  margin-bottom: calc(var(--space-sm) * -1);
   line-height: 1;
 }
 
@@ -201,7 +198,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-secondary);
+  background: var(--bg-alt);
   border-radius: var(--radius-full);
 }
 
@@ -209,7 +206,7 @@
   display: block;
   font-style: normal;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .authorCompany {
@@ -220,12 +217,12 @@
 
 /* Testimonial Swiper Pagination */
 .testimonialSwiper :global(.swiper-pagination-bullet) {
-  background: var(--chocolate-light);
-  opacity: 0.5;
+  background: var(--text-muted);
+  opacity: 0.3;
 }
 
 .testimonialSwiper :global(.swiper-pagination-bullet-active) {
-  background: var(--cherry);
+  background: var(--accent);
   opacity: 1;
 }
 
