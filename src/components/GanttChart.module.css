@@ -1,0 +1,440 @@
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-bottom: var(--space-2xl);
+  font-size: 1.1rem;
+}
+
+.ganttContainer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  overflow: hidden;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  min-height: 400px;
+  padding-top: var(--space-3xl);
+}
+
+/* Year Markers */
+.yearMarkers {
+  position: absolute;
+  top: 0;
+  left: 180px;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .yearMarkers {
+    left: 0;
+  }
+}
+
+.yearMarker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.yearLabel {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0 var(--space-sm);
+  transform: translateX(-50%);
+}
+
+.yearLine {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--border-color) 0%,
+    var(--border-color) 50%,
+    transparent 100%
+  );
+  margin-left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.5;
+}
+
+/* Rows */
+.rows {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 48px;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+}
+
+.rowLabel {
+  width: 160px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .rowLabel {
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+  }
+}
+
+.company {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Bar Container - Relative positioning context */
+.barContainer {
+  position: relative;
+  flex: 1;
+  height: 40px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .barContainer {
+    width: 100%;
+  }
+}
+
+/* Experience Bar - Absolute positioning */
+.bar {
+  position: absolute;
+  top: 4px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: box-shadow var(--transition-fast);
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.bar:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.bar:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.barText {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  padding: 0 var(--space-sm);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  z-index: var(--z-tooltip);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: 0 10px 40px var(--shadow-color);
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-100%);
+  min-width: 200px;
+  max-width: 280px;
+}
+
+.tooltipHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.tooltipDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-sm);
+}
+
+.tooltipHeader strong {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.tooltipRole {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-sm);
+}
+
+.tooltipMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-xs);
+}
+
+.tooltipMeta svg {
+  flex-shrink: 0;
+}
+
+.tooltipHint {
+  margin-top: var(--space-sm);
+  font-size: 0.75rem;
+  color: var(--cherry);
+  font-weight: 500;
+}
+
+/* Now Indicator */
+.nowIndicator {
+  position: absolute;
+  top: var(--space-xl);
+  right: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.nowIndicator span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cherry);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(196, 30, 58, 0.1);
+  border-radius: var(--radius-md);
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.modal {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-2xl);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+.modalClose {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 1;
+}
+
+.modalClose:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.modalClose:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.modalAccent {
+  height: 6px;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.modalContent {
+  padding: var(--space-2xl);
+}
+
+.modalTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.modalCompany {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.modalMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.modalMetaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.modalMetaItem svg {
+  color: var(--caramel);
+}
+
+.modalDuration {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cherry);
+  background: rgba(196, 30, 58, 0.1);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+}
+
+.modalSubtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.modalList {
+  list-style: none;
+}
+
+.modalList li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.modalList li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--cherry);
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ganttContainer {
+    padding: var(--space-md);
+  }
+
+  .timeline {
+    min-height: 300px;
+    padding-top: var(--space-2xl);
+  }
+
+  .modal {
+    margin: var(--space-md);
+  }
+
+  .modalContent {
+    padding: var(--space-lg);
+  }
+}

@@ -1,0 +1,44 @@
+/* App-specific styles */
+
+/* Lenis smooth scroll styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#root {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Smooth section transitions */
+section {
+  position: relative;
+}
+
+/* Ensure proper stacking */
+main {
+  position: relative;
+  z-index: var(--z-base);
+}

@@ -1,0 +1,36 @@
+.button {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--chocolate);
+  color: var(--cream-light);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  z-index: var(--z-sticky);
+  transition: background-color var(--transition-base);
+}
+
+.button:hover {
+  background: var(--chocolate-light);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 44px;
+    height: 44px;
+  }
+}

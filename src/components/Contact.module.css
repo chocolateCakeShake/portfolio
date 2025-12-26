@@ -1,0 +1,228 @@
+.contact {
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: var(--space-2xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Contact Info */
+.info {
+  position: relative;
+}
+
+.infoTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.contactList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.contactLink:hover {
+  border-color: var(--chocolate-light);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--cherry), var(--caramel));
+  border-radius: var(--radius-md);
+  color: white;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contactValue {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.contactValue svg {
+  color: var(--text-muted);
+}
+
+/* Decorative Element */
+.decorative {
+  position: relative;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+}
+
+.decorativeCircle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--cherry), var(--caramel));
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(40px);
+}
+
+.decorativeText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--cherry);
+}
+
+.decorativeText span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Form */
+.form {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+}
+
+.formGroup {
+  margin-bottom: var(--space-lg);
+}
+
+.label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--space-md);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.input:hover,
+.textarea:hover {
+  border-color: var(--chocolate-light);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--cherry);
+  box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: var(--space-md) var(--space-xl);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.successMessage {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(196, 30, 58, 0.1);
+  color: var(--cherry);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Focus visible styles for accessibility */
+.contactLink:focus-visible,
+.input:focus-visible,
+.textarea:focus-visible,
+.submitBtn:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
