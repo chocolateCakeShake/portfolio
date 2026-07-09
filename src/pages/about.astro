@@ -1,27 +1,287 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// How I work — principles, not platitudes. Drawn from the actual track record.
+const principles = [
+  {
+    n: '01',
+    h: 'Start with the problem, not the stack.',
+    p: 'The tools are a means. I figure out what a problem actually needs — then pick, or learn, whatever gets it shipped. Angular one year, on-chain integrations the next.',
+  },
+  {
+    n: '02',
+    h: 'Ship, then harden.',
+    p: 'Get it in front of real users, then stabilize and raise the bar. A two-month MVP taken to production beats a perfect thing that never ships.',
+  },
+  {
+    n: '03',
+    h: 'Raise the floor for the team.',
+    p: 'Standards, review, tooling, hiring, mentoring. I lead a 4-engineer team — my job is making everyone around me faster and safer, not just writing code.',
+  },
+  {
+    n: '04',
+    h: 'Use AI like an engineer.',
+    p: 'I rolled out Claude Code org-wide with a structured CLAUDE.md hierarchy and custom commands. Leverage, applied with judgment — not hype.',
+  },
+];
+
+// Capabilities — grouped evidence. Broad on purpose.
+const capabilities = [
+  { g: 'Languages & frameworks', items: ['TypeScript', 'React', 'Next.js', 'Angular', 'Node / Express', 'C#', 'Python'] },
+  { g: 'Mobile & desktop', items: ['Ionic', 'Electron'] },
+  { g: 'Data & infrastructure', items: ['PostgreSQL', 'Supabase', 'Linux', 'DigitalOcean'] },
+  { g: 'Web & chain', items: ['Ethereum / Tron integration', 'dApps & wallets', 'Web Vitals', 'Lighthouse'] },
+  { g: 'AI engineering', items: ['Anthropic SDK', 'Claude Code', 'MCP'] },
+  { g: 'Practice', items: ['TypeScript strictness', 'ESLint / Prettier', 'Husky', 'Monorepos', 'Code review', 'Technical hiring'] },
+];
+
+const education = [
+  {
+    title: 'BSc, Computer Science',
+    org: 'FAST — NUCES, Lahore',
+    period: '2015 — 2021',
+  },
+  {
+    title: 'Google Project Management (Specialization)',
+    org: 'Coursera',
+    period: '2025',
+  },
+];
 ---
 
-<BaseLayout title="About — Abdullah">
-  <section class="stub shell">
+<BaseLayout title="About — Abdullah" description="A generalist software engineer who leads a team — problem-first, stack-agnostic, and deliberately broad.">
+  <section class="intro shell">
     <p class="label">About</p>
-    <h1>Next iteration</h1>
-    <p class="stub__lede">
-      The generalist narrative, education, and how I work go here.
-    </p>
+    <h1 class="intro__title">A generalist, on purpose.</h1>
+    <div class="intro__lede">
+      <p>
+        I'm a software engineer who refuses to be defined by a single stack.
+        Handed a problem, I work out what it really needs — a React frontend, a
+        C# service, an on-chain integration, a desktop app, a two-month MVP —
+        and I ship it.
+      </p>
+      <p>
+        Six years in, that range is the point. I've picked up new stacks on the
+        job under deadline, rebuilt critical systems from scratch, and now lead a
+        team building software BMW depends on. The code is only half of it: I
+        hire, review, mentor, and stay the calm one when production is on fire.
+      </p>
+    </div>
+  </section>
+
+  <section class="how shell" aria-label="How I work">
+    <header class="how__head">
+      <p class="label">How I work</p>
+      <h2 class="how__title">Four things I hold to.</h2>
+    </header>
+    <div class="how__grid">
+      {principles.map((pr) => (
+        <article class="principle">
+          <span class="principle__n label">{pr.n}</span>
+          <h3 class="principle__h">{pr.h}</h3>
+          <p class="principle__p">{pr.p}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="caps shell" aria-label="Capabilities">
+    <header class="caps__head">
+      <p class="label">Capabilities</p>
+      <h2 class="caps__title">Evidence, not identity.</h2>
+      <p class="caps__note">
+        A broad toolkit picked up across real projects. The list is long by
+        design — none of it is the point on its own.
+      </p>
+    </header>
+    <div class="caps__panel">
+      {capabilities.map((c) => (
+        <div class="caps__row">
+          <span class="caps__group label">{c.g}</span>
+          <div class="caps__chips">
+            {c.items.map((i) => <span class="chip">{i}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="edu shell" aria-label="Education">
+    <header class="edu__head">
+      <p class="label">Education</p>
+    </header>
+    <dl class="edu__list">
+      {education.map((e) => (
+        <div class="edu__row">
+          <dt class="edu__title">{e.title}</dt>
+          <dd class="edu__org">{e.org}</dd>
+          <dd class="edu__period label">{e.period}</dd>
+        </div>
+      ))}
+    </dl>
   </section>
 </BaseLayout>
 
 <style>
-  .stub {
-    padding-block: var(--sp-24);
+  /* --- Intro --- */
+  .intro {
+    padding-block: var(--sp-16) var(--sp-12);
   }
-  .stub h1 {
+  .intro__title {
     font-size: var(--fs-h1);
-    margin: var(--sp-3) 0 var(--sp-4);
+    max-width: 16ch;
+    margin: var(--sp-3) 0 var(--sp-6);
   }
-  .stub__lede {
+  .intro__lede {
+    max-width: 60ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
     color: var(--muted);
-    max-width: 48ch;
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    line-height: 1.65;
+  }
+  .intro__lede :global(strong) {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* --- How I work --- */
+  .how {
+    padding-block: var(--sp-12);
+  }
+  .how__head {
+    margin-bottom: var(--sp-8);
+  }
+  .how__title {
+    font-size: var(--fs-h2);
+    margin-top: var(--sp-2);
+  }
+  .how__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-4);
+  }
+  .principle {
+    padding: var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+  }
+  .principle__n {
+    color: var(--accent-ix);
+  }
+  .principle__h {
+    font-size: var(--fs-h3);
+    margin: var(--sp-3) 0 var(--sp-3);
+  }
+  .principle__p {
+    color: var(--muted);
+    font-size: var(--fs-small);
+    line-height: 1.55;
+    max-width: 46ch;
+  }
+
+  /* --- Capabilities --- */
+  .caps {
+    padding-block: var(--sp-12);
+  }
+  .caps__head {
+    margin-bottom: var(--sp-8);
+  }
+  .caps__title {
+    font-size: var(--fs-h2);
+    margin-top: var(--sp-2);
+  }
+  .caps__note {
+    max-width: 52ch;
+    margin-top: var(--sp-4);
+    color: var(--muted);
+    font-size: var(--fs-small);
+  }
+  .caps__panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .caps__row {
+    display: grid;
+    grid-template-columns: minmax(160px, 220px) 1fr;
+    gap: var(--sp-6);
+    align-items: start;
+    padding: var(--sp-6);
+  }
+  .caps__row + .caps__row {
+    border-top: 1px solid var(--border);
+  }
+  .caps__group {
+    color: var(--ink);
+    padding-top: 0.35rem;
+  }
+  .caps__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+    padding: 0.25rem 0.625rem;
+    background: var(--surface-sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  /* --- Education --- */
+  .edu {
+    padding-block: var(--sp-12) var(--sp-24);
+  }
+  .edu__head {
+    margin-bottom: var(--sp-6);
+  }
+  .edu__list {
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+  .edu__row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: var(--sp-2) var(--sp-6);
+    padding: var(--sp-6) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu__title {
+    font-size: var(--fs-h3);
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .edu__org {
+    margin: 0;
+    grid-column: 1;
+    color: var(--muted);
+    font-size: var(--fs-small);
+  }
+  .edu__period {
+    margin: 0;
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .how__grid {
+      grid-template-columns: 1fr;
+    }
+    .caps__row {
+      grid-template-columns: 1fr;
+      gap: var(--sp-3);
+    }
   }
 </style>

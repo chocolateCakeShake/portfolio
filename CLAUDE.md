@@ -59,13 +59,15 @@ just **"Abdullah"**, slightly larger, no title chip. Theme toggle is a
 - **Home** — done & signed off. Full-height hero (eyebrow "Generalist by design"
   → "I ship — whatever the stack." → lede → 2 CTAs → "At a glance" spec panel) +
   recessed "Selected outcomes" KPI band.
-- **Work** — TODO. The **"Overlap Map"**: reimagined Gantt career timeline that
-  shows *overlapping* roles (there's real overlap between jobs). Reuse home's
-  card/panel tokens. ⚠️ Confirm with user before including the **Cobalt-Tec 2019
-  internship** — it's NOT on his resume.
-- **About** — TODO. Generalist narrative, education, how he works.
-- **Contact** — TODO. GitHub, LinkedIn, phone +92 301 5219996,
-  abdullah6566@gmail.com. (Current file has a placeholder email link.)
+- **Work** — done. The **"Overlap Map"** (Gantt of concurrent roles, Jan 2019 →
+  now axis) + reverse-chron problem→outcome detail cards. Cobalt-Tec 2019 is
+  included (user approved) but has only a placeholder line — **no real detail /
+  metrics / stack yet**; ask Abdullah to fill it in. SOCO is labelled "Lead
+  Software Engineer" (reframed from the résumé's "Lead Frontend Engineer").
+- **About** — done. Generalist narrative → four "how I work" principle cards →
+  capabilities matrix (grouped chips) → education.
+- **Contact** — done. Two-column: intro + "Channels" panel (email, GitHub,
+  LinkedIn, phone) with icons. Phone +92 301 5219996, abdullah6566@gmail.com.
 
 ## Workflow (important)
 
