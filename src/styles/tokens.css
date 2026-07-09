@@ -1,0 +1,105 @@
+/* ============================================================
+   Warm Carbon + Aqua Foil — design tokens
+   Container: Carbon/Cloudscape restraint. Personalized with a
+   warm (paper/espresso) neutral ramp + one cool aqua signal.
+   ============================================================ */
+
+:root {
+  /* --- Warm neutral ramp: light (default) --- */
+  --bg: #f3f1ec;          /* warm paper — page base */
+  --surface: #faf8f3;     /* raised cards/panels */
+  --surface-sunken: #edeae2;
+  --border: #e2ded5;      /* hairline dividers */
+  --border-strong: #cfcabf;
+  --ink: #1e1b19;         /* primary text */
+  --muted: #6f6a62;       /* secondary text / captions */
+  --faint: #928c82;       /* tertiary / disabled */
+
+  /* --- Aqua Foil accent --- */
+  --accent: #12b5a6;      /* fill: markers, bars, active */
+  --accent-ix: #0c8c80;   /* interactive text/links (AA on paper) */
+  --accent-wash: rgba(18, 181, 166, 0.1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  /* --- Warm neutral ramp: dark (espresso) --- */
+  --bg: #171614;
+  --surface: #201e1b;
+  --surface-sunken: #100f0e;
+  --border: #322f2a;
+  --border-strong: #45413a;
+  --ink: #f1eee8;
+  --muted: #a39c92;
+  --faint: #7c766c;
+
+  --accent: #2cd4c2;
+  --accent-ix: #34d6c4;
+  --accent-wash: rgba(44, 212, 194, 0.12);
+
+  color-scheme: dark;
+}
+
+/* Follow OS when the user hasn't chosen explicitly */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #171614;
+    --surface: #201e1b;
+    --surface-sunken: #100f0e;
+    --border: #322f2a;
+    --border-strong: #45413a;
+    --ink: #f1eee8;
+    --muted: #a39c92;
+    --faint: #7c766c;
+    --accent: #2cd4c2;
+    --accent-ix: #34d6c4;
+    --accent-wash: rgba(44, 212, 194, 0.12);
+    color-scheme: dark;
+  }
+}
+
+:root {
+  /* --- Type families ---
+     Roboto (a close, freely-licensed cousin of AWS's Amazon Ember) does
+     display + body; hierarchy comes from size/weight, not a second face.
+     Roboto Mono is reserved strictly for small uppercase metadata labels. */
+  --font-display: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-body: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* --- Fluid type scale --- */
+  --fs-display: clamp(2.75rem, 6vw, 5rem);
+  --fs-h1: clamp(2rem, 4vw, 3rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.9375rem;  /* secondary text — readable, not tiny */
+  --fs-label: 0.8125rem;  /* mono eyebrows / metadata */
+
+  /* --- Spacing scale (4px base) --- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+
+  /* --- Shape (Cloudscape-style soft rounding) --- */
+  --radius: 8px;          /* controls: buttons, inputs, chips */
+  --radius-card: 12px;    /* cards, containers */
+  --shadow-sm: 0 1px 1px rgba(15, 20, 25, 0.05), 0 3px 10px rgba(15, 20, 25, 0.07);
+
+  /* --- Layout --- */
+  --shell-h: 4rem;        /* UI-shell nav height */
+  --measure: 68ch;        /* readable line length */
+  --page-max: 76rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --dur: 180ms;
+}

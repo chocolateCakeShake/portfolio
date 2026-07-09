@@ -1,0 +1,480 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// --- Overlap Map: a career timeline that shows CONCURRENT roles a linear CV hides.
+// Axis runs Jan 2019 → Dec 2026 (96 months, one column per year).
+const AXIS_START = 2019; // Jan of this year = index 0
+const AXIS_MONTHS = 96; // through Dec 2026 → 8 clean year columns
+const NOW = { y: 2026, m: 7 }; // Present marker (Jul 2026)
+
+const idx = (y: number, m: number) => (y - AXIS_START) * 12 + (m - 1);
+const pct = (y: number, m: number) => (idx(y, m) / AXIS_MONTHS) * 100;
+const nowPct = pct(NOW.y, NOW.m);
+const years = Array.from({ length: 8 }, (_, i) => AXIS_START + i);
+
+// Bars ordered by start date (top → bottom) so the overlap reads visually.
+const track = [
+  { role: 'Intern', org: 'Cobalt-Tec', from: [2019, 6], to: [2019, 8], current: false },
+  { role: 'Sys Admin / Writer', org: 'CarSpiritPK', from: [2020, 3], to: [2022, 12], current: false },
+  { role: 'Junior Developer', org: 'Hardstone', from: [2021, 8], to: [2022, 8], current: false },
+  { role: 'Software Engineer', org: 'Avento Labs', from: [2022, 8], to: [2024, 10], current: false },
+  { role: 'Lead Software Engineer', org: 'SOCO', from: [2024, 10], to: [NOW.y, NOW.m], current: true },
+] as const;
+
+// Detail cards — reverse chronological. Problem → outcome, active voice.
+const roles = [
+  {
+    org: 'SOCO Engineers',
+    title: 'Lead Software Engineer',
+    period: 'Oct 2024 — Present',
+    lede: 'Lead a 4-engineer team on BMW-facing systems — own hiring, review every merge, and take point on production incidents.',
+    points: [
+      'Rebuilt a critical scheduler from scratch (React, vanilla CSS): 30s → 3s load, with drag-and-drop rescheduling and conflict detection — shipped in 6 weeks.',
+      'Ported all legacy jQuery HTML reports to a Next.js app in 2 weeks, saving months of planned backend rewrite.',
+      'Rolled out Claude Code org-wide with a structured CLAUDE.md hierarchy and custom commands that measurably sped up delivery.',
+      'Set the engineering bar: TypeScript strictness, ESLint/Prettier, Husky pre-commit pipelines, and a tailored technical hiring pipeline.',
+    ],
+    stack: ['React', 'Next.js', 'TypeScript', 'Claude Code'],
+  },
+  {
+    org: 'Avento Labs',
+    title: 'Software Engineer',
+    period: 'Aug 2022 — Oct 2024',
+    lede: 'Shipped across web, mobile, and chain — from zero to production and beyond.',
+    points: [
+      'Shipped a full MVP in 2 months, then took it to production and stabilized it with high-impact post-launch features.',
+      'Led 4 projects on Next.js with 3 production deployments.',
+      'Built a crypto wallet from scratch in Ionic and shipped it to the Google Play Store.',
+      'Led web-app integration with smart contracts on Ethereum and Tron, and built an NFT marketplace beyond what off-the-shelf libraries could handle.',
+    ],
+    stack: ['Next.js', 'Ionic', 'Ethereum / Tron', 'TypeScript'],
+  },
+  {
+    org: 'Hardstone Enterprises',
+    title: 'Junior Developer',
+    period: 'Aug 2021 — Aug 2022',
+    lede: 'Started with little industry experience and was contributing to the software team within a month.',
+    points: [
+      'Picked up Angular and TypeScript on the job and shipped production code within weeks.',
+      'Worked across the stack — primarily Angular, with regular contributions to C# and Python microservices.',
+      'Became the team’s primary contact with upper management in Texas, chosen for communication strength.',
+      'Set up and maintained Linux dev environments for the engineering team.',
+    ],
+    stack: ['Angular', 'TypeScript', 'C#', 'Python', 'Linux'],
+  },
+  {
+    org: 'CarSpiritPK.com',
+    title: 'System Admin & Content Writer',
+    period: 'Mar 2020 — Dec 2022',
+    lede: 'Kept a high-traffic site fast — and occasionally wrote for it.',
+    points: [
+      'Optimized Web Vitals with Lighthouse and GTmetrix, improving page load speed by 40%.',
+      'Migrated the site from Bluehost to DigitalOcean for a further 30% performance gain.',
+      'Wrote SEO-friendly opinion reviews and analysis that drove significant traffic.',
+    ],
+    stack: ['Linux', 'DigitalOcean', 'Web Vitals', 'SEO'],
+  },
+  {
+    org: 'Cobalt-Tec',
+    title: 'Intern',
+    period: '2019',
+    lede: 'Where it started — an early internship and first hands-on software work.',
+    points: [],
+    stack: [],
+  },
+];
+---
+
+<BaseLayout title="Work — Abdullah" description="Six years of shipping across web, mobile, desktop, and chain — with the overlaps a linear CV hides.">
+  <section class="intro shell">
+    <p class="label">Work</p>
+    <h1 class="intro__title">The overlap a résumé hides.</h1>
+    <p class="intro__lede">
+      Six years rarely run in a straight line. These roles ran concurrently —
+      day job, side work, and the next thing, all at once. Here's the real shape
+      of it, then the problems each one solved.
+    </p>
+  </section>
+
+  <section class="map shell" aria-label="Career timeline">
+    <div class="map__panel">
+      <div class="map__head">
+        <span class="label">Overlap map</span>
+        <span class="map__legend">
+          <span class="swatch swatch--now"></span> Current
+          <span class="swatch swatch--past"></span> Past
+        </span>
+      </div>
+
+      <div class="map__scroll">
+        <div class="map__grid">
+          <!-- Year axis -->
+          <div class="map__axis" aria-hidden="true">
+            <div class="map__axis-label"></div>
+            <div class="map__axis-track">
+              {years.map((y, i) => (
+                <span class="map__year" style={`left:${(i / 8) * 100}%`}>{y}</span>
+              ))}
+              <span class="map__now-label" style={`left:${nowPct}%`}>Now</span>
+            </div>
+          </div>
+
+          <!-- Role bars -->
+          {track.map((t) => {
+            const left = pct(t.from[0], t.from[1]);
+            const width = pct(t.to[0], t.to[1]) - left;
+            return (
+              <div class="map__row">
+                <div class="map__row-label">
+                  <span class="map__role">{t.role}</span>
+                  <span class="map__org label">{t.org}</span>
+                </div>
+                <div class="map__row-track">
+                  <div
+                    class={`bar ${t.current ? 'bar--now' : 'bar--past'}`}
+                    style={`left:${left}%;width:${width}%`}
+                    role="img"
+                    aria-label={`${t.role} at ${t.org}`}
+                  />
+                </div>
+              </div>
+            );
+          })}
+
+          <!-- Present marker overlay (grid-aligned to the track column) -->
+          <div class="map__now" aria-hidden="true">
+            <div></div>
+            <div class="map__now-track">
+              <span style={`left:${nowPct}%`}></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="roles shell" aria-label="Experience detail">
+    <header class="roles__head">
+      <p class="label">Experience</p>
+      <h2 class="roles__title">Problem → outcome, role by role</h2>
+    </header>
+
+    <div class="roles__list">
+      {roles.map((r) => (
+        <article class="role">
+          <div class="role__head">
+            <div>
+              <h3 class="role__org">{r.org}</h3>
+              <p class="role__title label">{r.title}</p>
+            </div>
+            <span class="role__period label">{r.period}</span>
+          </div>
+          <div class="role__body">
+            <p class="role__lede">{r.lede}</p>
+            {r.points.length > 0 && (
+              <ul class="role__points">
+                {r.points.map((p) => <li>{p}</li>)}
+              </ul>
+            )}
+            {r.stack.length > 0 && (
+              <div class="role__stack">
+                {r.stack.map((s) => <span class="chip">{s}</span>)}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --- Intro --- */
+  .intro {
+    padding-block: var(--sp-16) var(--sp-8);
+  }
+  .intro__title {
+    font-size: var(--fs-h1);
+    max-width: 18ch;
+    margin: var(--sp-3) 0 var(--sp-4);
+  }
+  .intro__lede {
+    max-width: 56ch;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    line-height: 1.65;
+  }
+
+  /* --- Overlap Map panel (Cloudscape container) --- */
+  .map {
+    padding-bottom: var(--sp-16);
+  }
+  .map__panel {
+    --map-label: 200px; /* width of the left role-label column */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .map__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-6);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-sunken);
+  }
+  .map__legend {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    font-size: var(--fs-label);
+    color: var(--muted);
+  }
+  .swatch {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 3px;
+    margin-left: var(--sp-3);
+    margin-right: 2px;
+    vertical-align: -1px;
+  }
+  .swatch--now {
+    background: var(--accent);
+  }
+  .swatch--past {
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-strong);
+  }
+
+  .map__scroll {
+    overflow-x: auto;
+  }
+  .map__grid {
+    position: relative;
+    min-width: 640px;
+    padding: var(--sp-4) var(--sp-6) var(--sp-6);
+  }
+
+  /* Year axis */
+  .map__axis {
+    display: grid;
+    grid-template-columns: var(--map-label) 1fr;
+    margin-bottom: var(--sp-4);
+  }
+  .map__axis-track {
+    position: relative;
+    height: 1.25rem;
+    /* faint year gridlines every 1/8 */
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--border) 0,
+      var(--border) 1px,
+      transparent 1px,
+      transparent 12.5%
+    );
+  }
+  .map__year {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .map__year:first-child {
+    transform: none;
+  }
+  .map__now-label {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent-ix);
+  }
+
+  /* Rows */
+  .map__row {
+    display: grid;
+    grid-template-columns: var(--map-label) 1fr;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  .map__row-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding-right: var(--sp-4);
+  }
+  .map__role {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .map__org {
+    color: var(--muted);
+  }
+  .map__row-track {
+    position: relative;
+    height: 100%;
+    /* same gridlines as the axis, but subtler, spanning the row */
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--border) 0,
+      var(--border) 1px,
+      transparent 1px,
+      transparent 12.5%
+    );
+  }
+  .bar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.5rem;
+    min-width: 0.5rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+  }
+  .bar--now {
+    background: var(--accent);
+  }
+  .bar--past {
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--accent-ix);
+  }
+
+  /* Present vertical marker — a grid overlay matching the row columns so the
+     line lands inside the 1fr time-track, past the label column. */
+  .map__now {
+    position: absolute;
+    top: 3.25rem; /* below the axis (pad-top + axis height + axis margin) */
+    bottom: var(--sp-6);
+    left: var(--sp-6);
+    right: var(--sp-6);
+    display: grid;
+    grid-template-columns: var(--map-label) 1fr;
+    pointer-events: none;
+  }
+  .map__now-track {
+    position: relative;
+  }
+  .map__now-track span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-1px);
+    background: var(--accent);
+    opacity: 0.55;
+  }
+
+  /* --- Experience detail cards --- */
+  .roles {
+    padding-block: var(--sp-16);
+    background: var(--surface-sunken);
+    border-top: 1px solid var(--border);
+  }
+  .roles__head {
+    margin-bottom: var(--sp-8);
+  }
+  .roles__title {
+    font-size: var(--fs-h2);
+    margin-top: var(--sp-2);
+  }
+  .roles__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+  .role {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .role__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+    padding: var(--sp-6);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-sunken);
+  }
+  .role__org {
+    font-size: var(--fs-h3);
+    line-height: 1.2;
+  }
+  .role__title {
+    color: var(--accent-ix);
+    margin-top: 0.35rem;
+  }
+  .role__period {
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .role__body {
+    padding: var(--sp-6);
+  }
+  .role__lede {
+    color: var(--ink);
+    font-size: var(--fs-small);
+    max-width: var(--measure);
+    margin-bottom: var(--sp-4);
+  }
+  .role__points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    max-width: var(--measure);
+  }
+  .role__points li {
+    position: relative;
+    padding-left: var(--sp-6);
+    color: var(--muted);
+    font-size: var(--fs-small);
+    line-height: 1.55;
+  }
+  .role__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  .role__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    margin-top: var(--sp-6);
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+    padding: 0.25rem 0.625rem;
+    background: var(--surface-sunken);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  @media (max-width: 560px) {
+    .role__points li {
+      padding-left: var(--sp-4);
+    }
+  }
+</style>

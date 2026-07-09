@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Abdullah — Lead Software Engineer',
+  description = 'Lead software engineer who ships across stacks — and leads the teams that do.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {/* Set theme before paint to avoid a flash of the wrong mode */}
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: var(--sp-4);
+        top: -3rem;
+        z-index: 100;
+        background: var(--surface);
+        color: var(--ink);
+        border: 1px solid var(--border-strong);
+        padding: var(--sp-2) var(--sp-4);
+        border-radius: var(--radius);
+        transition: top var(--dur) var(--ease);
+      }
+      .skip-link:focus {
+        top: var(--sp-4);
+      }
+      main {
+        min-height: calc(100vh - var(--shell-h));
+      }
+    </style>
+  </body>
+</html>

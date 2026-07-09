@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Abdullah">
+  <section class="stub shell">
+    <p class="label">About</p>
+    <h1>Next iteration</h1>
+    <p class="stub__lede">
+      The generalist narrative, education, and how I work go here.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .stub {
+    padding-block: var(--sp-24);
+  }
+  .stub h1 {
+    font-size: var(--fs-h1);
+    margin: var(--sp-3) 0 var(--sp-4);
+  }
+  .stub__lede {
+    color: var(--muted);
+    max-width: 48ch;
+  }
+</style>

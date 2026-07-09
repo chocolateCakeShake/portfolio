@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — Abdullah">
+  <section class="stub shell">
+    <p class="label">Contact</p>
+    <h1>Next iteration</h1>
+    <p class="stub__lede">
+      A proper contact page comes later. For now:
+      <a href="mailto:abdullah6566@gmail.com">abdullah6566@gmail.com</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .stub {
+    padding-block: var(--sp-24);
+  }
+  .stub h1 {
+    font-size: var(--fs-h1);
+    margin: var(--sp-3) 0 var(--sp-4);
+  }
+  .stub__lede {
+    color: var(--muted);
+    max-width: 48ch;
+  }
+</style>

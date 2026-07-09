@@ -1,0 +1,51 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="label">Abdullah — Lead Software Engineer</span>
+    <div class="footer__links">
+      <a class="mono" href="https://github.com/chocolateCakeShake" target="_blank" rel="noopener">GitHub</a>
+      <a class="mono" href="https://linkedin.com/in/abdullah6566" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="mono" href="mailto:abdullah6566@gmail.com">Email</a>
+    </div>
+    <span class="label footer__meta">Lahore, PK · © {year}</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .footer__inner {
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding: var(--sp-8) var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-4) var(--sp-8);
+  }
+  .footer__links {
+    display: flex;
+    gap: var(--sp-6);
+  }
+  .footer__links a {
+    font-size: var(--fs-small);
+    color: var(--muted);
+  }
+  .footer__links a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .footer__meta {
+    margin-left: auto;
+  }
+  @media (max-width: 560px) {
+    .footer__meta {
+      margin-left: 0;
+    }
+  }
+</style>

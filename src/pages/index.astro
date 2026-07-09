@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Problems solved — receipts, not a skills list. Tech is the means, not the point.
+const receipts = [
+  { k: 'Load time', v: '30s → 3s', d: 'Rebuilt a critical scheduler from scratch' },
+  { k: 'Migration', v: '2 weeks', d: 'Ported legacy jQuery reports to Next.js' },
+  { k: '0 → MVP', v: '2 months', d: 'Shipped to production, then stabilized it' },
+  { k: 'Shipped', v: 'Play Store', d: 'Built a crypto wallet, start to store' },
+];
+---
+
+<BaseLayout>
+  <section class="hero shell">
+    <div class="hero__grid">
+      <div class="hero__body">
+        <p class="hero__eyebrow label">Generalist by design</p>
+
+        <h1 class="hero__title">
+          I ship — <span class="hero__accent">whatever the stack</span>.
+        </h1>
+
+        <p class="hero__lede">
+          Six years building production software across web, mobile, desktop, and
+          chain — Angular to React, C# services to on-chain integrations, a
+          two-month MVP to BMW-facing systems. The stack is a detail. Solving the
+          problem is the job.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/work">See the work</a>
+          <a class="btn btn--ghost" href="/contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="spec" aria-label="Profile at a glance">
+        <div class="spec__head">
+          <span class="label">At a glance</span>
+        </div>
+        <dl class="spec__list">
+          <div class="spec__row">
+            <dt class="label">Role</dt>
+            <dd>Lead Software Engineer</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="label">Leads</dt>
+            <dd>A 4-engineer team</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="label">Based</dt>
+            <dd>Lahore, PK · UTC+5</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="label">Experience</dt>
+            <dd>Shipping since 2019</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="label">Domains</dt>
+            <dd>Web · Mobile · Desktop · Chain</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="label">Currently</dt>
+            <dd>BMW-facing systems @ SOCO</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <a class="hero__scroll" href="#outcomes">
+      <span class="label">Selected outcomes</span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14M6 13l6 6 6-6" />
+      </svg>
+    </a>
+  </section>
+
+  <section class="outcomes" id="outcomes">
+    <div class="shell">
+      <header class="outcomes__head">
+        <p class="label">Track record</p>
+        <h2 class="outcomes__title">Selected outcomes</h2>
+      </header>
+      <div class="receipts" role="list" aria-label="Selected outcomes">
+        {
+          receipts.map((r) => (
+            <div class="receipt" role="listitem">
+              <span class="receipt__k label">{r.k}</span>
+              <span class="receipt__v">{r.v}</span>
+              <span class="receipt__d">{r.d}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --- Full-height hero: one clean screen --- */
+  .hero {
+    min-height: calc(100dvh - var(--shell-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-block: var(--sp-12);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    width: 100%;
+  }
+  .hero__body {
+    max-width: 100%;
+  }
+
+  /* Right-hand spec panel — Cloudscape "container" + key-value pairs */
+  .spec {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .spec__head {
+    padding: var(--sp-4) var(--sp-6);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-sunken);
+  }
+  .spec__list {
+    margin: 0;
+  }
+  .spec__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: var(--sp-4) var(--sp-6);
+  }
+  .spec__row + .spec__row {
+    border-top: 1px solid var(--border);
+  }
+  .spec__row dd {
+    margin: 0;
+    color: var(--ink);
+    font-size: var(--fs-small);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+    .spec {
+      max-width: 420px;
+    }
+  }
+
+  .hero__eyebrow {
+    margin-bottom: var(--sp-6);
+    color: var(--accent-ix);
+  }
+
+  .hero__title {
+    font-size: var(--fs-display);
+    max-width: 16ch;
+    margin-bottom: var(--sp-6);
+  }
+  .hero__accent {
+    color: var(--accent-ix);
+  }
+
+  .hero__lede {
+    max-width: 54ch;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    line-height: 1.65;
+    margin-bottom: var(--sp-8);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0.8125rem 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: background var(--dur) var(--ease),
+      border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  }
+  /* Primary — filled accent (Cloudscape primary) */
+  .btn--primary {
+    background: var(--accent);
+    color: #08201d;
+  }
+  .btn--primary:hover {
+    text-decoration: none;
+    background: color-mix(in srgb, var(--accent) 84%, var(--ink));
+  }
+  /* Secondary — bordered, accent label (Cloudscape normal) */
+  .btn--ghost {
+    color: var(--accent-ix);
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+  .btn--ghost:hover {
+    text-decoration: none;
+    border-color: var(--accent-ix);
+    background: var(--accent-wash);
+  }
+
+  /* Scroll cue — sits at the foot of the hero */
+  .hero__scroll {
+    position: absolute;
+    left: var(--gutter);
+    bottom: var(--sp-8);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--muted);
+  }
+  .hero__scroll:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .hero__scroll svg {
+    animation: nudge 2s var(--ease) infinite;
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* --- Outcomes: a distinct, recessed band (AWS-style section) --- */
+  .outcomes {
+    padding-block: var(--sp-16);
+    scroll-margin-top: var(--shell-h);
+    background: var(--surface-sunken);
+    border-block: 1px solid var(--border);
+  }
+  .outcomes__head {
+    margin-bottom: var(--sp-8);
+  }
+  .outcomes__title {
+    font-size: var(--fs-h2);
+    margin-top: var(--sp-2);
+  }
+  .receipts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-4);
+  }
+  .receipt {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
+  }
+  .receipt__v {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .receipt__d {
+    font-size: var(--fs-small);
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 860px) {
+    .receipts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .hero__scroll {
+      display: none;
+    }
+  }
+  @media (max-width: 460px) {
+    .receipts {
+      grid-template-columns: 1fr;
+    }
+    .hero__title {
+      max-width: none;
+    }
+  }
+</style>
