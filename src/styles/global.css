@@ -40,7 +40,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+/* Theme flip is instant: kill every transition on the frame it changes. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
 }
 
 h1,
