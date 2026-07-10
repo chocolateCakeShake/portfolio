@@ -20,12 +20,6 @@ const channels = [
     href: 'https://linkedin.com/in/abdullah6566',
     icon: 'linkedin',
   },
-  {
-    label: 'Phone',
-    value: '+92 301 5219996',
-    href: 'tel:+923015219996',
-    icon: 'phone',
-  },
 ];
 ---
 
@@ -69,9 +63,6 @@ const channels = [
                   )}
                   {c.icon === 'linkedin' && (
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.5h3.1V21H3.4V8.5Zm5.06 0h2.97v1.7h.04c.41-.78 1.42-1.6 2.93-1.6 3.13 0 3.71 2.06 3.71 4.74V21h-3.1v-5.54c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92V21h-3.1V8.5Z" /></svg>
-                  )}
-                  {c.icon === 'phone' && (
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2Z" /></svg>
                   )}
                 </span>
                 <span class="channel__text">
@@ -176,7 +167,7 @@ const channels = [
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--surface-sunken);
-    color: var(--accent-ix);
+    color: var(--muted);
   }
   .channel__text {
     display: flex;
@@ -193,12 +184,12 @@ const channels = [
   }
   .channel__arrow {
     margin-left: auto;
-    color: var(--faint);
+    color: var(--muted);
     flex-shrink: 0;
     transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
   }
   .channel__link:hover .channel__arrow {
-    color: var(--accent-ix);
+    color: var(--ink);
     transform: translate(2px, -2px);
   }
 

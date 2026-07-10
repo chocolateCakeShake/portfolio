@@ -12,8 +12,7 @@
   --border: #e2ded5;      /* hairline dividers */
   --border-strong: #cfcabf;
   --ink: #1e1b19;         /* primary text */
-  --muted: #6f6a62;       /* secondary text / captions */
-  --faint: #928c82;       /* tertiary / disabled */
+  --muted: #6f6a62;       /* secondary text / captions — the only supporting tone */
 
   /* --- Aqua Foil accent --- */
   --accent: #12b5a6;      /* fill: markers, bars, active */
@@ -32,7 +31,6 @@
   --border-strong: #45413a;
   --ink: #f1eee8;
   --muted: #a39c92;
-  --faint: #7c766c;
 
   --accent: #2cd4c2;
   --accent-ix: #34d6c4;
@@ -51,7 +49,6 @@
     --border-strong: #45413a;
     --ink: #f1eee8;
     --muted: #a39c92;
-    --faint: #7c766c;
     --accent: #2cd4c2;
     --accent-ix: #34d6c4;
     --accent-wash: rgba(44, 212, 194, 0.12);
