@@ -45,6 +45,12 @@ the chosen close cousin; **Roboto Mono** for small uppercase metadata labels onl
   - **Buttons**: `.btn--primary` (aqua fill, `#08201d` text) + `.btn--ghost`
     (bordered, `--accent-ix` text). 8px radius, 1rem, `0.8125rem 1.5rem`.
 - Text should not be needlessly small — enterprise-comfortable sizing.
+- **Tone discipline (important):** only **two text tones** — `--ink` (primary)
+  and `--muted` (everything secondary: labels, captions, secondary links). No
+  third grey. Aqua is a **signal, never decorative text** — reserve it for
+  genuinely interactive/active things (active nav pill, buttons, the hero
+  headline highlight, real links, the timeline "Now" marker). Do NOT colour
+  eyebrows, numbers, titles, or icons aqua. Keep ~one accent moment per view.
 
 ## Structure
 
@@ -66,8 +72,10 @@ just **"Abdullah"**, slightly larger, no title chip. Theme toggle is a
   Software Engineer" (reframed from the résumé's "Lead Frontend Engineer").
 - **About** — done. Generalist narrative → four "how I work" principle cards →
   capabilities matrix (grouped chips) → education.
-- **Contact** — done. Two-column: intro + "Channels" panel (email, GitHub,
-  LinkedIn, phone) with icons. Phone +92 301 5219996, abdullah6566@gmail.com.
+- **Contact** — done. Full-height, vertically-centred two-column: intro +
+  "Channels" panel (email, GitHub, LinkedIn) with icons. Email
+  abdullah6566@gmail.com. **Phone was deliberately removed** (reads as too
+  eager) — do not re-add it.
 
 ## Workflow (important)
 
