@@ -21,13 +21,13 @@ const year = new Date().getFullYear();
   .footer__inner {
     max-width: var(--page-max);
     margin-inline: auto;
-    padding: var(--sp-6) var(--gutter);
+    padding: var(--sp-12) var(--gutter);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--sp-3) var(--sp-6);
-    font-size: var(--fs-small);
+    gap: var(--sp-4) var(--sp-8);
+    font-size: var(--fs-body);
     color: var(--muted);
   }
   .footer__links {
@@ -35,10 +35,16 @@ const year = new Date().getFullYear();
     gap: var(--sp-6);
   }
   .footer__links a {
-    color: var(--muted);
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 0.25em;
+    text-decoration-thickness: 1px;
+    transition: color var(--dur) var(--ease),
+      text-decoration-color var(--dur) var(--ease);
   }
   .footer__links a:hover {
-    color: var(--ink);
-    text-decoration: none;
+    color: var(--accent-ix);
+    text-decoration-color: var(--accent-ix);
   }
 </style>
